@@ -9,6 +9,7 @@ import globalOptions from './global-options.js';
 import Player from './player';
 import plugin from './plugins.js';
 import mergeOptions from '../../src/js/utils/merge-options.js';
+import mergeInto from '../../src/js/utils/merge-into.js';
 import * as Fn from './utils/fn.js';
 
 import assign from 'object.assign';
@@ -19,7 +20,6 @@ import * as Dom from './utils/dom.js';
 import * as browser from './utils/browser.js';
 import * as Url from './utils/url.js';
 import extendsFn from './extends.js';
-import merge from 'lodash-compat/object/merge';
 import createDeprecationProxy from './utils/create-deprecation-proxy.js';
 
 // Include the built-in techs
@@ -142,7 +142,7 @@ videojs.options = createDeprecationProxy(globalOptions, {
  * @method setGlobalOptions
  */
 videojs.setGlobalOptions = function(newOptions) {
-  return merge(globalOptions, newOptions);
+  return mergeInto(globalOptions, newOptions);
 };
 
 /**
@@ -374,7 +374,7 @@ videojs.plugin = plugin;
  */
 videojs.addLanguage = function(code, data){
   code = ('' + code).toLowerCase();
-  return merge(globalOptions.languages, { [code]: data })[code];
+  return mergeInto(globalOptions.languages, { [code]: data })[code];
 };
 
 /**

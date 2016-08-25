@@ -39,7 +39,10 @@ function createTimeRangesObj(ranges){
   return {
     length: ranges.length,
     start: getRange.bind(null, 'start', 0, ranges),
-    end: getRange.bind(null, 'end', 1, ranges)
+    end: getRange.bind(null, 'end', 1, ranges),
+    toString: function() {
+      return JSON.stringify(ranges);
+    }
   };
 }
 
